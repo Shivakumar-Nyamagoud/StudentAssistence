@@ -8,3 +8,4 @@ Generate
 ¹study plans
 ²study materials
 ³quizzes
+4 voice chat
