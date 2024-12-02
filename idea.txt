@@ -1,0 +1,10 @@
+Homepage
+Reading enhancement 
+¹ student(progress)
+²parents with login(access of progress of their children)
+³video suggestion 
+
+Generate 
+¹study plans
+²study materials
+³quizzes
