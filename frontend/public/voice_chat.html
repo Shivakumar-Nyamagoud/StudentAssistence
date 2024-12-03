@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice Chat Assistant</title>
+  <link rel="stylesheet" href="voice_chat.css">
+</head>
+<body>
+  <header>
+    <h1>Voice Chat Assistant</h1>
+  </header>
+  
+  <main>
+    <section id="chat-interface">
+      <button id="toggle-contrast" aria-label="Toggle High Contrast Mode">High Contrast</button>
+      <div id="chat-history" role="region" aria-live="polite">
+        <h2>Chat History</h2>
+        <ul id="history-list"></ul>
+      </div>
+      
+      <div id="chat-section">
+        <div class="chat-input-container">
+          <input 
+            type="text" 
+            id="user-input" 
+            placeholder="Type your message..." 
+            aria-label="Type your message"
+            onkeypress="handleKeyPress(event)">
+          <button id="voice-button" aria-label="Start voice chat">🎙</button>
+          <button id="send-text" aria-label="Send message">Send</button>
+        </div>
+        <p id="spoken-text" aria-live="assertive">Speak into the microphone...</p>
+        <p id="response-text"></p>
+      </div>
+    </section>
+    <section id="pdf-reader">
+        <h2>PDF Notes Reader</h2>
+        <input type="file" id="upload-pdf" accept="application/pdf">
+        <button id="play-pdf-speech">Play PDF Speech</button>
+        <button id="stop-pdf-speech">Stop Speech</button>
+      </section>
+      
+      
+  </main>
+  
+  <script src="voice_chat.js"></script>
+</body>
+</html>

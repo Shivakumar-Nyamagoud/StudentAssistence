@@ -1,0 +1,172 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #0078D4;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+/* Chat Interface Layout */
+#chat-interface {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* High Contrast Mode */
+.high-contrast {
+    background-color: #000;
+    color: #fff;
+}
+
+.high-contrast button {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Chat History */
+#chat-history {
+    width: 90%;
+    max-width: 600px;
+    height: 400px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow-y: scroll;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+#history-list {
+    list-style: none;
+    padding: 0;
+}
+
+#history-list li {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+/* Chat Section */
+#chat-section {
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-input-container {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+}
+
+#user-input {
+    flex: 1;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+#user-input:focus {
+    outline: none;
+}
+
+#voice-button, #send-text {
+    background-color: #0078D4;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    margin-left: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#voice-button:hover, #send-text:hover {
+    background-color: #005BB5;
+}
+
+#spoken-text, #response-text {
+    margin-top: 10px;
+    font-style: italic;
+    color: #555;
+}
+
+
+
+/* PDF Reader Section */
+#pdf-reader {
+    margin-top: 20px;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  #upload-pdf {
+    margin: 10px 0;
+    display: inline-block;
+  }
+  
+  #play-pdf-speech, #stop-pdf-speech {
+    background-color: #0078D4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  #play-pdf-speech:hover, #stop-pdf-speech:hover {
+    background-color: #005BB5;
+    transform: scale(1.1);
+  }
+  
+  /* Stop Button Special Styling */
+  #stop-pdf-speech {
+    background-color: #D40000;
+  }
+  
+  #stop-pdf-speech:hover {
+    background-color: #A00000;
+  }
+  
+  /* Fade-in Animation for Section */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Button Press Animation */
+  #play-pdf-speech:active, #stop-pdf-speech:active {
+    transform: scale(0.95);
+  }
+  
