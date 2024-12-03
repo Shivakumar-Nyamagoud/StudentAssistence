@@ -1,0 +1,147 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif; /* Simple, sans-serif font for better readability */
+}
+
+/* Body Styling */
+body {
+    background-color: #E3F2FD; /* Light blue background for a calm and clean look */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    font-size: 16px; /* Slightly larger font for better readability */
+    line-height: 1.5; /* Increased line height for easier reading */
+}
+
+/* Container Styling */
+.container {
+    background-color: #FFFFFF; /* White background for better contrast */
+    width: 100%;
+    max-width: 450px; /* Adjusted to accommodate wider content */
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    border: 1px solid #D1D1D1;
+}
+
+/* Form Titles */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px; /* Larger title font for emphasis */
+    color: #2E7D32; /* Green color for a positive, calm tone */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Form Labels */
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #424242; /* Darker color for better contrast */
+}
+
+/* Input Fields */
+input, select {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 20px;
+    border: 2px solid #BDBDBD;
+    border-radius: 6px;
+    font-size: 16px; /* Larger font for easier readability */
+    background-color: #F7F7F7;
+    color: #424242;
+    outline: none;
+}
+
+/* Input Focus */
+input:focus, select:focus {
+    border-color: #2E7D32; /* Green border for focus */
+    box-shadow: 0 0 6px rgba(46, 125, 50, 0.3);
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    padding: 14px;
+    font-size: 18px; /* Larger button text */
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #2E7D32; /* Green color for positive action */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+}
+
+/* Button Hover */
+button:hover {
+    background-color: #1B5E20; /* Darker green on hover */
+}
+
+/* Link Buttons */
+.link-button {
+    background: none;
+    color: #2E7D32;
+    border: none;
+    font-size: 16px; /* Slightly larger text for links */
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+    transition: color 0.3s ease;
+}
+
+.link-button:hover {
+    color: #1B5E20; /* Darker green on hover */
+}
+
+/* Dynamic Section Visibility */
+.hidden {
+    display: none; /* Utility class to hide elements dynamically */
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px; /* Adjusted heading size for smaller screens */
+    }
+
+    label {
+        font-size: 14px; /* Smaller label font for small screens */
+    }
+
+    input, select {
+        font-size: 18px; /* Increased input font size for smaller screens */
+    }
+
+    button {
+        font-size: 18px; /* Larger font for better accessibility */
+    }
+}
+
+/* Enhanced Styling for Forms */
+form {
+    margin-top: 20px;
+}
+
+/* Specific Styling for Error Messages */
+.error-message {
+    color: #D32F2F; /* Red color for error messages */
+    font-size: 14px;
+    margin-bottom: 10px;
+    display: none; /* Hidden by default */
+}
