@@ -8,6 +8,7 @@
 </head>
 <body>
   <div class="container">
+    <!-- Sign-In Form -->
     <div id="form-container">
       <h1>Sign In</h1>
       <form id="auth-form">
@@ -49,10 +50,20 @@
       </form>
     </div>
 
-    <!-- Sign Up Form -->
-    <div id="signup-form-container" style="display: none;">
+    <!-- Sign-Up Form -->
+    <div id="signup-form-container" class="hidden">
       <h1>Sign Up</h1>
       <form id="signup-form">
+        <!-- Name -->
+        <label for="name">Full Name:</label>
+        <input 
+          type="text" 
+          id="name" 
+          name="name" 
+          placeholder="Enter your full name" 
+          required 
+        />
+
         <!-- Role Selection -->
         <label for="role-signup">Select Role:</label>
         <select id="role-signup" name="role" required onchange="updateSignupFields()">
@@ -74,14 +85,13 @@
         </div>
 
         <!-- Additional Parent Fields for Sign Up -->
-        <div id="parent-fields" style="display: none;">
+        <div id="parent-fields" class="hidden">
           <label for="student-id">Student ID (to link to your child):</label>
           <input 
             type="text" 
             id="student-id" 
             name="student-id" 
             placeholder="Enter your child's Student ID"
-            required
           />
         </div>
 
@@ -97,10 +107,149 @@
 
         <!-- Submit Button -->
         <button type="submit" id="signup-submit-btn">Sign Up</button>
+        
+        <!-- Back to Sign In Option -->
+        <p>Already have an account? <button class="link-button" type="button" onclick="toggleForm()">Sign In</button></p>
       </form>
     </div>
   </div>
-
   <script src="signup.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+import { getDatabase, ref, push, get, child } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB95NgHgvgksnX3-MzcoQtXFRp3B5H2sJA",
+  authDomain: "studentassistence-18f34.firebaseapp.com",
+  databaseURL: "https://studentassistence-18f34-default-rtdb.firebaseio.com",
+  projectId: "studentassistence-18f34",
+  storageBucket: "studentassistence-18f34.appspot.com",
+  messagingSenderId: "182727662059",
+  appId: "1:182727662059:web:aa9fdd70eccfd24684a1ae"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+// Handle sign-up form submission
+document.getElementById('signup-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const name = document.getElementById('name').value;
+  const role = document.getElementById('role-signup').value;
+  const userID = document.getElementById('user-id-signup').value;
+  const studentID = document.getElementById('student-id').value || null;
+  const password = document.getElementById('password-signup').value;
+
+  const studentRef = ref(db, 'students');
+  const parentRef = ref(db, 'parents');
+
+  if (role === 'student') {
+    push(studentRef, { name, userID, password })
+      .then(() => alert("Sign-Up Successful as Student"))
+      .catch((error) => alert('Error: ' + error.message));
+  } else if (role === 'parent') {
+    push(parentRef, { name, userID, studentID, password })
+      .then(() => alert("Sign-Up Successful as Parent"))
+      .catch((error) => alert('Error: ' + error.message));
+  } else {
+    alert('Please select a valid role.');
+  }
+});
+
+// Handle sign-in form submission
+document.getElementById('auth-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const role = document.getElementById('role').value;
+  const userID = document.getElementById('user-id').value;
+  const password = document.getElementById('password').value;
+
+  if (role === 'student') {
+    const studentRef = ref(db, 'students');
+    get(studentRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        const students = snapshot.val();
+        const foundStudent = Object.values(students).find(
+          student => student.userID === userID && student.password === password
+        );
+
+        if (foundStudent) {
+          alert('Sign In Successful as Student');
+          window.location.href = 'student.html';
+        } else {
+          alert('Invalid Student ID or Password');
+        }
+      } else {
+        alert('No Student Data Found');
+      }
+    }).catch((error) => alert('Error: ' + error.message));
+  } else if (role === 'parent') {
+    const parentRef = ref(db, 'parents');
+    get(parentRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        const parents = snapshot.val();
+        const foundParent = Object.values(parents).find(
+          parent => parent.userID === userID && parent.password === password
+        );
+
+        if (foundParent) {
+          alert('Sign In Successful as Parent');
+          window.location.href = 'parent.html';
+        } else {
+          alert('Invalid Parent ID or Password');
+        }
+      } else {
+        alert('No Parent Data Found');
+      }
+    }).catch((error) => alert('Error: ' + error.message));
+  } else {
+    alert('Please select a valid role.');
+  }
+});
+
+// Update fields based on selected role for sign-up
+function updateSignupFields() {
+  const role = document.getElementById('role-signup').value;
+  const parentFields = document.getElementById('parent-fields');
+  const studentIDField = document.getElementById('student-id');
+
+  if (role === 'parent') {
+    parentFields.classList.remove('hidden');
+    studentIDField.setAttribute('required', 'true');
+  } else {
+    parentFields.classList.add('hidden');
+    studentIDField.removeAttribute('required');
+  }
+}
+
+// Update fields based on selected role for sign-in
+function updateFields() {
+  const role = document.getElementById('role').value;
+  const idLabel = document.getElementById('id-label');
+
+  if (role === 'parent') {
+    idLabel.textContent = 'Parent ID:';
+  } else {
+    idLabel.textContent = 'Student ID:';
+  }
+}
+
+// Toggle between Sign-In and Sign-Up forms
+function toggleForm() {
+  const signinForm = document.getElementById('form-container');
+  const signupForm = document.getElementById('signup-form-container');
+
+  signinForm.classList.toggle('hidden');
+  signupForm.classList.toggle('hidden');
+}
+
+  </script>
+
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
 </body>
 </html>

@@ -3,12 +3,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;  /* Simple, sans-serif font for better readability */
+    font-family: 'Arial', sans-serif; /* Simple, sans-serif font for better readability */
 }
 
 /* Body Styling */
 body {
-    background-color: #E3F2FD;  /* Light blue background for a calm and clean look */
+    background-color: #E3F2FD; /* Light blue background for a calm and clean look */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,9 +20,9 @@ body {
 
 /* Container Styling */
 .container {
-    background-color: #FFFFFF;  /* White background for better contrast */
+    background-color: #FFFFFF; /* White background for better contrast */
     width: 100%;
-    max-width: 450px;  /* Adjusted to accommodate wider content */
+    max-width: 450px; /* Adjusted to accommodate wider content */
     padding: 30px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border-radius: 12px;
@@ -33,8 +33,8 @@ body {
 h1 {
     text-align: center;
     margin-bottom: 30px;
-    font-size: 28px;  /* Larger title font for emphasis */
-    color: #2E7D32;  /* Green color for a positive, calm tone */
+    font-size: 28px; /* Larger title font for emphasis */
+    color: #2E7D32; /* Green color for a positive, calm tone */
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -45,7 +45,7 @@ label {
     margin-bottom: 10px;
     font-weight: bold;
     font-size: 16px;
-    color: #424242;  /* Darker color for better contrast */
+    color: #424242; /* Darker color for better contrast */
 }
 
 /* Input Fields */
@@ -55,7 +55,7 @@ input, select {
     margin-bottom: 20px;
     border: 2px solid #BDBDBD;
     border-radius: 6px;
-    font-size: 16px;  /* Larger font for easier readability */
+    font-size: 16px; /* Larger font for easier readability */
     background-color: #F7F7F7;
     color: #424242;
     outline: none;
@@ -63,7 +63,7 @@ input, select {
 
 /* Input Focus */
 input:focus, select:focus {
-    border-color: #2E7D32;  /* Green border for focus */
+    border-color: #2E7D32; /* Green border for focus */
     box-shadow: 0 0 6px rgba(46, 125, 50, 0.3);
 }
 
@@ -71,10 +71,10 @@ input:focus, select:focus {
 button {
     width: 100%;
     padding: 14px;
-    font-size: 18px;  /* Larger button text */
+    font-size: 18px; /* Larger button text */
     font-weight: bold;
     color: #FFFFFF;
-    background-color: #2E7D32;  /* Green color for positive action */
+    background-color: #2E7D32; /* Green color for positive action */
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -84,7 +84,7 @@ button {
 
 /* Button Hover */
 button:hover {
-    background-color: #1B5E20;  /* Darker green on hover */
+    background-color: #1B5E20; /* Darker green on hover */
 }
 
 /* Link Buttons */
@@ -92,7 +92,7 @@ button:hover {
     background: none;
     color: #2E7D32;
     border: none;
-    font-size: 16px;  /* Slightly larger text for links */
+    font-size: 16px; /* Slightly larger text for links */
     font-weight: bold;
     cursor: pointer;
     text-decoration: underline;
@@ -101,7 +101,12 @@ button:hover {
 }
 
 .link-button:hover {
-    color: #1B5E20;  /* Darker green on hover */
+    color: #1B5E20; /* Darker green on hover */
+}
+
+/* Dynamic Section Visibility */
+.hidden {
+    display: none; /* Utility class to hide elements dynamically */
 }
 
 /* Responsive Design */
@@ -112,18 +117,31 @@ button:hover {
     }
 
     h1 {
-        font-size: 24px;  /* Adjusted heading size for smaller screens */
+        font-size: 24px; /* Adjusted heading size for smaller screens */
     }
 
     label {
-        font-size: 14px;  /* Smaller label font for small screens */
+        font-size: 14px; /* Smaller label font for small screens */
     }
 
     input, select {
-        font-size: 18px;  /* Increased input font size for smaller screens */
+        font-size: 18px; /* Increased input font size for smaller screens */
     }
 
     button {
-        font-size: 18px;  /* Larger font for better accessibility */
+        font-size: 18px; /* Larger font for better accessibility */
     }
+}
+
+/* Enhanced Styling for Forms */
+form {
+    margin-top: 20px;
+}
+
+/* Specific Styling for Error Messages */
+.error-message {
+    color: #D32F2F; /* Red color for error messages */
+    font-size: 14px;
+    margin-bottom: 10px;
+    display: none; /* Hidden by default */
 }
