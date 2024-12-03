@@ -1,0 +1,61 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    overflow: hidden; /* Prevent scrolling for full animation effect */
+}
+
+main {
+    position: relative;
+    z-index: 10;
+}
+
+header {
+    position: relative;
+    z-index: 10;
+}
+
+/* Background Stars and Twinkling Animation */
+.stars, .twinkling {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.stars {
+    background: url('https://www.transparenttextures.com/patterns/tiny-cross-hatch.png') repeat;
+    opacity: 0.7;
+    animation: moveStars 30s linear infinite;
+}
+
+@keyframes moveStars {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 10000px 10000px;
+    }
+}
+
+.twinkling {
+    background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+    opacity: 0.5;
+    animation: twinkle 10s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
