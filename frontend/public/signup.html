@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In / Sign Up</title>
+  <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+  <div class="container">
+    <div id="form-container">
+      <h1>Sign In</h1>
+      <form id="auth-form">
+        <!-- Role Selection -->
+        <label for="role">Select Role:</label>
+        <select id="role" name="role" required onchange="updateFields()">
+          <option value="">-- Select Role --</option>
+          <option value="student">Student</option>
+          <option value="parent">Parent</option>
+        </select>
+
+        <!-- Dynamic ID Fields -->
+        <div id="id-field">
+          <label id="id-label" for="user-id">Student ID:</label>
+          <input 
+            type="text" 
+            id="user-id" 
+            name="user-id" 
+            placeholder="Enter your Student ID" 
+            required 
+          />
+        </div>
+
+        <!-- Password -->
+        <label for="password">Password:</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          placeholder="Enter your password" 
+          required 
+        />
+
+        <!-- Submit Button -->
+        <button type="submit" id="submit-btn">Sign In</button>
+        
+        <!-- Sign Up Option -->
+        <p>Don't have an account? <button class="link-button" type="button" onclick="toggleForm()">Sign Up</button></p>
+      </form>
+    </div>
+
+    <!-- Sign Up Form -->
+    <div id="signup-form-container" style="display: none;">
+      <h1>Sign Up</h1>
+      <form id="signup-form">
+        <!-- Role Selection -->
+        <label for="role-signup">Select Role:</label>
+        <select id="role-signup" name="role" required onchange="updateSignupFields()">
+          <option value="">-- Select Role --</option>
+          <option value="student">Student</option>
+          <option value="parent">Parent</option>
+        </select>
+
+        <!-- Dynamic ID Fields for Sign Up -->
+        <div id="id-fields">
+          <label id="id-label-signup" for="user-id-signup">Student ID:</label>
+          <input 
+            type="text" 
+            id="user-id-signup" 
+            name="user-id" 
+            placeholder="Enter your Student ID" 
+            required 
+          />
+        </div>
+
+        <!-- Additional Parent Fields for Sign Up -->
+        <div id="parent-fields" style="display: none;">
+          <label for="student-id">Student ID (to link to your child):</label>
+          <input 
+            type="text" 
+            id="student-id" 
+            name="student-id" 
+            placeholder="Enter your child's Student ID"
+            required
+          />
+        </div>
+
+        <!-- Password -->
+        <label for="password-signup">Password:</label>
+        <input 
+          type="password" 
+          id="password-signup" 
+          name="password" 
+          placeholder="Enter your password" 
+          required 
+        />
+
+        <!-- Submit Button -->
+        <button type="submit" id="signup-submit-btn">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="signup.js"></script>
+</body>
+</html>
