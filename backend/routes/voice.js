@@ -10,17 +10,15 @@ const pdfParse = require('pdf-parse');
 const router = express.Router();
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => {
-  console.log('Connected to MongoDB');
-}).catch(err => {
-  console.error('Error connecting to MongoDB:', err);
-});
+const mongoURI = "mongodb+srv://kohallishreeshail:shreeshail123@mycloud.7wif8.mongodb.net/?retryWrites=true&w=majority&appName=mycloud";
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('Error connecting to MongoDB:', err));
+
 
 // Initialize Google Generative AI with API Key
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const GEMINI_API_KEY="AIzaSyAQ0lcHD2e0mTU8RcPQT5r4f2LTYdFdEmE";
+const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 
 // Function to interact with the Gemini AI
 async function getBotResponse(userInput) {
