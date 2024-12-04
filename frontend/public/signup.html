@@ -115,8 +115,8 @@
   </div>
   <script src="signup.js"></script>
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
-import { getDatabase, ref, push, get, child } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+  import { getDatabase, ref, push, get, child } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB95NgHgvgksnX3-MzcoQtXFRp3B5H2sJA",
@@ -158,82 +158,68 @@ document.getElementById('signup-form').addEventListener('submit', function(event
 });
 
 // Handle sign-in form submission
+// Sign-In Logic Update
 document.getElementById('auth-form').addEventListener('submit', function(event) {
-  event.preventDefault();
+    event.preventDefault();
 
-  const role = document.getElementById('role').value;
-  const userID = document.getElementById('user-id').value;
-  const password = document.getElementById('password').value;
+    const role = document.getElementById('role').value;
+    const userID = document.getElementById('user-id').value;
+    const password = document.getElementById('password').value;
 
-  if (role === 'student') {
-    const studentRef = ref(db, 'students');
-    get(studentRef).then((snapshot) => {
-      if (snapshot.exists()) {
-        const students = snapshot.val();
-        const foundStudent = Object.values(students).find(
-          student => student.userID === userID && student.password === password
-        );
+    if (role === 'student') {
+        const studentRef = ref(db, 'students');
+        get(studentRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                const students = snapshot.val();
+                const foundStudent = Object.entries(students).find(
+                    ([id, student]) => student.userID === userID && student.password === password
+                );
 
-        if (foundStudent) {
-          alert('Sign In Successful as Student');
-          window.location.href = 'student.html';
-        } else {
-          alert('Invalid Student ID or Password');
-        }
-      } else {
-        alert('No Student Data Found');
-      }
-    }).catch((error) => alert('Error: ' + error.message));
-  } else if (role === 'parent') {
-    const parentRef = ref(db, 'parents');
-    get(parentRef).then((snapshot) => {
-      if (snapshot.exists()) {
-        const parents = snapshot.val();
-        const foundParent = Object.values(parents).find(
-          parent => parent.userID === userID && parent.password === password
-        );
+                if (foundStudent) {
+                    const [studentID, studentData] = foundStudent;
+                    localStorage.setItem('loggedInStudent', JSON.stringify({ id: studentID, name: studentData.name }));
+                    alert('Sign In Successful as Student');
+                    window.location.href = 'student.html';
+                } else {
+                    alert('Invalid Student ID or Password');
+                }
+            } else {
+                alert('No Student Data Found');
+            }
+        }).catch((error) => alert('Error: ' + error.message));
+    } else if (role === 'parent') {
+        const parentRef = ref(db, 'parents');
+        get(parentRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                const parents = snapshot.val();
+                const foundParent = Object.values(parents).find(
+                    parent => parent.userID === userID && parent.password === password
+                );
 
-        if (foundParent) {
-          alert('Sign In Successful as Parent');
-          window.location.href = 'parent.html';
-        } else {
-          alert('Invalid Parent ID or Password');
-        }
-      } else {
-        alert('No Parent Data Found');
-      }
-    }).catch((error) => alert('Error: ' + error.message));
-  } else {
-    alert('Please select a valid role.');
-  }
+                if (foundParent) {
+                    const linkedStudentID = foundParent.studentID;
+                    get(child(ref(db), `students/${linkedStudentID}`)).then((studentSnapshot) => {
+                        if (studentSnapshot.exists()) {
+                            const studentData = studentSnapshot.val();
+                            localStorage.setItem('loggedInStudent', JSON.stringify({ id: linkedStudentID, name: studentData.name }));
+                            alert('Sign In Successful as Parent');
+                            window.location.href = 'student.html';
+                        } else {
+                            alert('Linked Student Not Found');
+                        }
+                    });
+                } else {
+                    alert('Invalid Parent ID or Password');
+                }
+            } else {
+                alert('No Parent Data Found');
+            }
+        }).catch((error) => alert('Error: ' + error.message));
+    } else {
+        alert('Please select a valid role.');
+    }
 });
 
-// Update fields based on selected role for sign-up
-function updateSignupFields() {
-  const role = document.getElementById('role-signup').value;
-  const parentFields = document.getElementById('parent-fields');
-  const studentIDField = document.getElementById('student-id');
-
-  if (role === 'parent') {
-    parentFields.classList.remove('hidden');
-    studentIDField.setAttribute('required', 'true');
-  } else {
-    parentFields.classList.add('hidden');
-    studentIDField.removeAttribute('required');
-  }
-}
-
-// Update fields based on selected role for sign-in
-function updateFields() {
-  const role = document.getElementById('role').value;
-  const idLabel = document.getElementById('id-label');
-
-  if (role === 'parent') {
-    idLabel.textContent = 'Parent ID:';
-  } else {
-    idLabel.textContent = 'Student ID:';
-  }
-}
 
 // Toggle between Sign-In and Sign-Up forms
 function toggleForm() {
