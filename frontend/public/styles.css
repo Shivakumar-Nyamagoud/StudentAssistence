@@ -1,61 +1,152 @@
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Logo Positioning */
+.logo {
+    width: 50px; /* Increased logo size */
+    height: auto;
+    margin-top: 5px; /* Adjust for better alignment */
+    margin-right: 10px; /* Ensure space between logo and text */
 }
 
-body {
-    font-family: Arial, sans-serif;
-    overflow: hidden; /* Prevent scrolling for full animation effect */
+/* Navbar Styling */
+.navbar-light {
+    background-color: #f8f9fa !important; /* Light color for header */
 }
 
-main {
-    position: relative;
-    z-index: 10;
+.navbar .navbar-nav .nav-link {
+    font-size: 1.1rem;
 }
 
-header {
-    position: relative;
-    z-index: 10;
+/* Account Button (Circular) */
+.account-icon {
+    width: 30px;  /* Set a consistent size */
+    height: 30px;
+    border-radius: 50%; /* Ensure it's perfectly circular */
+    object-fit: cover; /* To ensure the image fits the circle */
 }
 
-/* Background Stars and Twinkling Animation */
-.stars, .twinkling {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
+.btn-outline-primary {
+    border-radius: 50%;
+    padding: 10px;
+    background-color: #fff;
 }
 
-.stars {
-    background: url('https://www.transparenttextures.com/patterns/tiny-cross-hatch.png') repeat;
-    opacity: 0.7;
-    animation: moveStars 30s linear infinite;
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
 }
 
-@keyframes moveStars {
+/* Hero Section */
+.hero {
+    background-image: url('images/image.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.hero .hero-content {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    border-radius: 10px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.hero .btn-primary {
+    font-size: 1.2rem;
+    padding: 10px 30px;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.hero .btn-primary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Features Section */
+/* Make entire card clickable */
+.card-link {
+    text-decoration: none;  /* Remove underline */
+}
+
+.card {
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.card-body {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+/* About Section */
+#about {
+    background-color: #f8f9fa;
+}
+
+#about h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+#about p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+#about img {
+    border-radius: 10px;
+}
+
+/* FadeIn Animation */
+@keyframes fadeIn {
     from {
-        background-position: 0 0;
+        opacity: 0;
+        transform: translateY(20px);
     }
     to {
-        background-position: 10000px 10000px;
-    }
-}
-
-.twinkling {
-    background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-    opacity: 0.5;
-    animation: twinkle 10s ease-in-out infinite;
-}
-
-@keyframes twinkle {
-    0%, 100% {
-        opacity: 0.3;
-    }
-    50% {
-        opacity: 0.7;
+        opacity: 1;
+        transform: translateY(0);
     }
 }
