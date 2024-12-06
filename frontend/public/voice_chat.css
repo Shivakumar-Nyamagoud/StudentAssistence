@@ -8,6 +8,7 @@ body {
 }
 
 header {
+    
     background-color: #0078D4;
     color: white;
     padding: 10px 20px;
@@ -15,6 +16,7 @@ header {
 }
 
 main {
+    
     padding: 20px;
 }
 
@@ -169,4 +171,33 @@ main {
   #play-pdf-speech:active, #stop-pdf-speech:active {
     transform: scale(0.95);
   }
-  
+  /* HOME button styling */
+.home {
+    background-color: #007bff; /* Primary blue color */
+    color: white; /* White text */
+    border: none; /* Remove border */
+    padding: 12px 20px; /* Padding for size */
+    font-size: 16px; /* Font size */
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition effects */
+    display: inline-block; /* To ensure the button fits inline */
+}
+
+/* Hover effect */
+.home:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slight scale-up effect */
+}
+
+/* Focus effect */
+.home:focus {
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.6); /* Add blue shadow on focus */
+}
+
+/* Active effect (when button is clicked) */
+.home:active {
+    background-color: #004085; /* Even darker blue when pressed */
+    transform: scale(1); /* Reset the scale to normal */
+}
