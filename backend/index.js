@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const voiceRoutes = require('./routes/voice');  // Add this line for voice chat route
+const voiceRoutes = require('./routes/voice'); // Import the voice routes
 require('dotenv').config();
 
 const app = express();
@@ -9,18 +9,18 @@ const app = express();
 // Middleware for parsing JSON requests
 app.use(bodyParser.json());
 
-// Serve static files
+// Serve static files from frontend/public
 app.use(express.static(path.join(__dirname, '../frontend/public')));
 
-// Add voice routes
+// API routes for voice assistant
 app.use('/api/voice', voiceRoutes);
 
-// Route to serve homepage
+// Serve the homepage
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/public/index.html'));
+    res.sendFile(path.join(__dirname, '../index.html'));
 });
 
-// Server setup
+// Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
